@@ -2,90 +2,92 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Dashboard Pecuária Leiteira</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gd:#1B4332;--gm:#2D6A4F;--gl:#52B788;--gp:#D8F3DC;
-  --cream:#F8F5F0;--cd:#EDE8E0;
+  --gd:#1B4332;--gm:#2D6A4F;--gl:#52B788;
+  --cream:#F5F2ED;--wh:#FFFFFF;
   --tp:#1A1A1A;--ts:#5A5A5A;--tm:#9A9A9A;
-  --wh:#FFFFFF;--red:#C62828;--rp:#FFEBEE;
-  --amb:#E65100;--ap:#FFF3E0;--bl:#1565C0;--bp:#E3F2FD;
-  --bor:rgba(0,0,0,0.08);
+  --red:#C62828;--rp:#FFEBEE;
+  --amb:#E65100;--ap:#FFF3E0;
+  --bl:#1565C0;
+  --bor:rgba(0,0,0,0.09);
 }
-html{font-size:15px}
+html{font-size:14px;-webkit-text-size-adjust:100%}
 body{font-family:'Poppins',system-ui,sans-serif;font-weight:400;background:var(--cream);color:var(--tp);min-height:100vh}
-b,strong,.fw7{font-weight:700}
 
 /* header */
-.hdr{background:var(--gd);padding:0 1.2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
-.hdr-l{display:flex;align-items:center;gap:12px}
-.hdr-ico{width:34px;height:34px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:17px}
-.hdr-t{font-weight:700;font-size:15px;color:#fff;line-height:1.2}
-.hdr-s{font-size:10px;color:rgba(255,255,255,0.6)}
-.hdr-b{font-size:10px;padding:4px 12px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:rgba(255,255,255,0.85);white-space:nowrap}
+.hdr{background:var(--gd);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.25)}
+.hdr-l{display:flex;align-items:center;gap:10px}
+.hdr-ico{width:32px;height:32px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hdr-t{font-weight:700;font-size:13px;color:#fff;line-height:1.2}
+.hdr-s{font-size:10px;color:rgba(255,255,255,0.55)}
+.hdr-b{font-size:9px;padding:3px 9px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);border-radius:20px;color:rgba(255,255,255,0.8);white-space:nowrap;flex-shrink:0}
 
 /* main */
-.main{max-width:1200px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.main{padding:1rem 0.85rem 3rem;max-width:600px;margin:0 auto}
 
 /* section label */
-.sl{font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:10px;margin-top:1.8rem;display:flex;align-items:center;gap:8px}
+.sl{font-weight:700;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:10px;margin-top:1.5rem;display:flex;align-items:center;gap:8px}
 .sl::after{content:'';flex:1;height:1px;background:var(--bor)}
 
-/* kpi grid */
-.kg{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-bottom:.5rem}
-.kpi{background:var(--wh);border-radius:12px;padding:14px 16px;border:1px solid var(--bor);position:relative;overflow:hidden}
+/* kpi grid — 2 cols on phone */
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.5rem}
+.kpi{background:var(--wh);border-radius:10px;padding:12px 13px;border:1px solid var(--bor);position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gl)}
 .kpi.w::before{background:var(--amb)}
 .kpi.d::before{background:var(--red)}
-.kl{font-size:10px;color:var(--tm);margin-bottom:5px;line-height:1.4}
-.kv{font-weight:700;font-size:22px;color:var(--tp);line-height:1}
-.ku{font-size:10px;color:var(--tm);margin-top:3px;line-height:1.3}
-.kd{font-size:10px;margin-top:5px}
+.kl{font-size:9px;color:var(--tm);margin-bottom:4px;line-height:1.35}
+.kv{font-weight:700;font-size:20px;color:var(--tp);line-height:1}
+.ku{font-size:9px;color:var(--tm);margin-top:3px;line-height:1.3}
+.kd{font-size:9px;margin-top:4px}
 .up{color:#2E7D32}.dn{color:var(--red)}.wt{color:var(--amb)}.nt{color:var(--tm)}
 
-/* alerts */
-.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
-.al{border-radius:8px;padding:9px 12px;font-size:11px;line-height:1.5;display:flex;gap:7px;align-items:flex-start;border:1px solid transparent}
+/* alerts — 1 col */
+.ag{display:flex;flex-direction:column;gap:7px}
+.al{border-radius:8px;padding:9px 11px;font-size:11px;line-height:1.5;display:flex;gap:7px;align-items:flex-start;border:1px solid transparent}
 .ai{font-size:13px;flex-shrink:0;margin-top:1px}
 .aok{background:#E8F5E9;border-color:#A5D6A7;color:#1B5E20}
 .aw{background:var(--ap);border-color:#FFCC80;color:#7B4F00}
 .ab{background:var(--rp);border-color:#EF9A9A;color:#7B1A1A}
 
-/* chart grid */
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:700px){.cg{grid-template-columns:1fr}}
-.cc{background:var(--wh);border-radius:12px;border:1px solid var(--bor);padding:16px 18px}
-.cc.wide{grid-column:1/-1}
-.ct{font-weight:700;font-size:12px;color:var(--tp);margin-bottom:8px}
-.lg{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:10px;color:var(--ts);align-items:center}
-.ld{display:flex;align-items:center;gap:5px}
-.ldot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
-.lline{width:16px;height:2px;border-radius:1px;flex-shrink:0}
-canvas{display:block;width:100%!important}
+/* chart cards — 1 col */
+.cc{background:var(--wh);border-radius:12px;border:1px solid var(--bor);padding:14px 14px 10px;margin-bottom:12px}
+.ct{font-weight:700;font-size:11px;color:var(--tp);margin-bottom:6px;line-height:1.3}
+.lg{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;font-size:9px;color:var(--ts);align-items:center}
+.ld{display:flex;align-items:center;gap:4px}
+.ldot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.lline{width:14px;height:2px;border-radius:1px;flex-shrink:0}
+canvas{display:block;width:100%!important;touch-action:pan-y}
 
 /* insumo btns */
-.isel{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.ibtn{font-family:inherit;font-weight:700;font-size:10px;padding:5px 12px;border-radius:20px;border:1px solid var(--bor);background:var(--cream);color:var(--ts);cursor:pointer;transition:.18s}
-.ibtn:hover{border-color:var(--gm);color:var(--gm)}
+.isel{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.ibtn{font-family:inherit;font-weight:700;font-size:9px;padding:5px 10px;border-radius:20px;border:1px solid var(--bor);background:var(--cream);color:var(--ts);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ibtn.on{background:var(--gd);color:#fff;border-color:var(--gd)}
 
-.foot{text-align:center;font-size:10px;color:var(--tm);padding:1.5rem 0 .8rem;border-top:1px solid var(--bor);margin-top:1.8rem}
+/* tooltip */
+.tip{position:fixed;background:rgba(26,26,26,0.93);color:#fff;font-size:11px;font-family:'Poppins',system-ui,sans-serif;padding:8px 12px;border-radius:8px;pointer-events:none;z-index:9999;line-height:1.6;max-width:190px;display:none;backdrop-filter:blur(4px)}
+
+.foot{text-align:center;font-size:9px;color:var(--tm);padding:1.2rem 0 .5rem;border-top:1px solid var(--bor);margin-top:1rem}
 </style>
 </head>
 <body>
+
+<div class="tip" id="tip"></div>
 
 <header class="hdr">
   <div class="hdr-l">
     <div class="hdr-ico">🐄</div>
     <div>
       <div class="hdr-t">Fazenda — Pecuária Leiteira</div>
-      <div class="hdr-s">Dashboard de gestão · Abr/2025 – Mar/2026</div>
+      <div class="hdr-s">Abr/2025 – Mar/2026</div>
     </div>
   </div>
-  <div class="hdr-b">Dados reais · Mar/2026</div>
+  <div class="hdr-b">Mar/2026</div>
 </header>
 
 <main class="main">
@@ -93,16 +95,16 @@ canvas{display:block;width:100%!important}
   <div class="sl">Indicadores — março/2026</div>
   <div class="kg">
     <div class="kpi"><div class="kl">Vacas em lactação</div><div class="kv">1.409</div><div class="ku">cabeças</div><div class="kd up">▲ maior do período</div></div>
-    <div class="kpi w"><div class="kl">Prod. média vaca/dia</div><div class="kv">40,7</div><div class="ku">L/vaca/dia · meta: 42 L</div><div class="kd wt">▼ 96,9% da meta</div></div>
-    <div class="kpi"><div class="kl">Produção total/dia</div><div class="kv">56.929</div><div class="ku">litros/dia</div><div class="kd up">▲ recorde do período</div></div>
+    <div class="kpi w"><div class="kl">Prod. média vaca/dia</div><div class="kv">40,7</div><div class="ku">L/vaca · meta 42 L</div><div class="kd wt">▼ 96,9% da meta</div></div>
+    <div class="kpi"><div class="kl">Produção total/dia</div><div class="kv">56.929</div><div class="ku">litros/dia</div><div class="kd up">▲ recorde</div></div>
     <div class="kpi"><div class="kl">CCS</div><div class="kv">94,8</div><div class="ku">mil cél/mL · meta ≤100</div><div class="kd up">▼ dentro da meta</div></div>
     <div class="kpi"><div class="kl">CBT</div><div class="kv">3,5</div><div class="ku">mil UFC/mL · meta ≤5</div><div class="kd up">▼ dentro da meta</div></div>
     <div class="kpi"><div class="kl">Taxa de Mastite</div><div class="kv">5,3%</div><div class="ku">meta ≤ 6%</div><div class="kd up">▼ dentro da meta</div></div>
     <div class="kpi d"><div class="kl">Prenhez Vacas</div><div class="kv">22,0%</div><div class="ku">meta ≥ 27%</div><div class="kd dn">▼ abaixo da meta</div></div>
     <div class="kpi w"><div class="kl">Prenhez Novilhas</div><div class="kv">58,0%</div><div class="ku">meta ≥ 60%</div><div class="kd wt">▼ abaixo da meta</div></div>
-    <div class="kpi d"><div class="kl">Vacas &gt;150 DEL não prenhes</div><div class="kv">16,0%</div><div class="ku">meta ≤ 15%</div><div class="kd dn">▲ acima da meta</div></div>
+    <div class="kpi d"><div class="kl">Vacas &gt;150 DEL</div><div class="kv">16,0%</div><div class="ku">não prenhes · meta ≤15%</div><div class="kd dn">▲ acima da meta</div></div>
     <div class="kpi"><div class="kl">RSCA</div><div class="kv">1,81</div><div class="ku">L/R$ · meta ≥ 0,87</div><div class="kd up">▲ acima da meta</div></div>
-    <div class="kpi w"><div class="kl">Morte+Descarte Nasc→Parto</div><div class="kv">1,2%</div><div class="ku">no mês · meta ano ≤10%</div><div class="kd wt">⚠ monitorar acumulado</div></div>
+    <div class="kpi w"><div class="kl">Morte+Desc. Nasc→Parto</div><div class="kv">1,2%</div><div class="ku">no mês · meta ano ≤10%</div><div class="kd wt">⚠ monitorar</div></div>
   </div>
 
   <div class="sl">Alertas</div>
@@ -112,98 +114,97 @@ canvas{display:block;width:100%!important}
     <div class="al ab"><span class="ai">⚠</span><span><b>Vacas &gt;150 DEL:</b> 16% não prenhes — acima da meta (15%)</span></div>
     <div class="al aok"><span class="ai">✓</span><span><b>CCS:</b> 94,8 mil cél/mL — dentro da meta (≤100)</span></div>
     <div class="al aok"><span class="ai">✓</span><span><b>CBT:</b> 3,5 mil UFC/mL — abaixo da meta (≤5)</span></div>
-    <div class="al aw"><span class="ai">⚠</span><span><b>Prod. média:</b> 40,7 L/vaca vs meta 42 L — acompanhar tendência</span></div>
+    <div class="al aw"><span class="ai">⚠</span><span><b>Prod. média:</b> 40,7 L/vaca vs meta 42 L — acompanhar</span></div>
   </div>
 
-  <div class="sl" style="margin-top:2rem">Evolução do período · Abr/2025 – Mar/2026</div>
-  <div class="cg">
+  <div class="sl" style="margin-top:1.5rem">Gráficos — Abr/2025 a Mar/2026</div>
 
-    <div class="cc wide">
-      <div class="ct">Volume de produção mensal (litros) e média L/vaca/dia</div>
-      <div class="lg">
-        <div class="ld"><span class="ldot" style="background:#1565C0;opacity:.65"></span>Volume total (litros/mês)</div>
-        <div class="ld"><span class="lline" style="background:#E65100"></span>Média L/vaca/dia</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #FFB74D"></span>&nbsp;Meta L/vaca/dia</div>
-      </div>
-      <canvas id="cProd" height="220"></canvas>
+  <div class="cc">
+    <div class="ct">Volume mensal (litros) e média L/vaca/dia</div>
+    <div class="lg">
+      <div class="ld"><span class="ldot" style="background:#1565C0;opacity:.65"></span>Volume (litros/mês)</div>
+      <div class="ld"><span class="lline" style="background:#E65100"></span>Média L/vaca/dia</div>
+      <div class="ld"><span style="display:inline-block;width:14px;border-top:2px dashed #FFB74D"></span>&nbsp;Meta</div>
     </div>
-
-    <div class="cc">
-      <div class="ct">CCS (mil cél/mL) vs Meta</div>
-      <div class="lg">
-        <div class="ld"><span class="ldot" style="background:#7B1FA2"></span>CCS</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #CE93D8"></span>&nbsp;Meta (100)</div>
-      </div>
-      <canvas id="cCCS" height="200"></canvas>
-    </div>
-
-    <div class="cc">
-      <div class="ct">Taxa de Mastite (%) vs Meta</div>
-      <div class="lg">
-        <div class="ld"><span class="lline" style="background:#C62828"></span>Mastite</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #EF9A9A"></span>&nbsp;Meta</div>
-      </div>
-      <canvas id="cMast" height="200"></canvas>
-    </div>
-
-    <div class="cc">
-      <div class="ct">Taxas de Descarte e Mortalidade (%/mês)</div>
-      <div class="lg">
-        <div class="ld"><span class="lline" style="background:#E65100"></span>Descarte</div>
-        <div class="ld"><span class="lline" style="background:#6A1B9A"></span>Mortalidade</div>
-      </div>
-      <canvas id="cDesc" height="200"></canvas>
-    </div>
-
-    <div class="cc">
-      <div class="ct">Taxa de Prenhez — Vacas e Novilhas (%)</div>
-      <div class="lg">
-        <div class="ld"><span class="lline" style="background:#2D6A4F"></span>Vacas</div>
-        <div class="ld"><span class="lline" style="background:#1565C0"></span>Novilhas</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #aaa"></span>&nbsp;Metas</div>
-      </div>
-      <canvas id="cPrenhez" height="200"></canvas>
-    </div>
-
-    <div class="cc">
-      <div class="ct">% Vacas não prenhes após 150 DEL</div>
-      <div class="lg">
-        <div class="ld"><span class="ldot" style="background:#F57F17"></span>% não prenhes</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #FFD54F"></span>&nbsp;Meta ≤15%</div>
-      </div>
-      <canvas id="cDEL" height="200"></canvas>
-    </div>
-
-    <div class="cc wide">
-      <div class="ct">Consumo de insumos (ton/mês)</div>
-      <div class="isel" id="ibtns">
-        <button class="ibtn on" data-i="0">Silagem</button>
-        <button class="ibtn" data-i="1">Caroço de Algodão</button>
-        <button class="ibtn" data-i="2">Polpa</button>
-        <button class="ibtn" data-i="3">Farelo de Soja</button>
-        <button class="ibtn" data-i="4">Fubá</button>
-      </div>
-      <canvas id="cIns" height="200"></canvas>
-    </div>
-
-    <div class="cc wide">
-      <div class="ct">RSCA — Retorno Sobre Custo Alimentar (L/R$)</div>
-      <div class="lg">
-        <div class="ld"><span class="lline" style="background:#2D6A4F"></span>RSCA real</div>
-        <div class="ld"><span style="display:inline-block;width:16px;border-top:2px dashed #52B788"></span>&nbsp;Meta (0,87)</div>
-      </div>
-      <canvas id="cRSCA" height="200"></canvas>
-    </div>
-
+    <canvas id="cProd" height="220"></canvas>
   </div>
+
+  <div class="cc">
+    <div class="ct">CCS (mil cél/mL) vs Meta (100)</div>
+    <div class="lg">
+      <div class="ld"><span class="ldot" style="background:#7B1FA2"></span>CCS</div>
+      <div class="ld"><span style="display:inline-block;width:14px;border-top:2px dashed #CE93D8"></span>&nbsp;Meta</div>
+    </div>
+    <canvas id="cCCS" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">Taxa de Mastite (%) vs Meta</div>
+    <div class="lg">
+      <div class="ld"><span class="lline" style="background:#C62828"></span>Mastite</div>
+      <div class="ld"><span style="display:inline-block;width:14px;border-top:2px dashed #EF9A9A"></span>&nbsp;Meta</div>
+    </div>
+    <canvas id="cMast" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">Descarte e Mortalidade (%/mês)</div>
+    <div class="lg">
+      <div class="ld"><span class="lline" style="background:#E65100"></span>Descarte</div>
+      <div class="ld"><span class="lline" style="background:#6A1B9A"></span>Mortalidade</div>
+    </div>
+    <canvas id="cDesc" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">Taxa de Prenhez — Vacas e Novilhas (%)</div>
+    <div class="lg">
+      <div class="ld"><span class="lline" style="background:#2D6A4F"></span>Vacas (meta 27%)</div>
+      <div class="ld"><span class="lline" style="background:#1565C0"></span>Novilhas (meta 60%)</div>
+    </div>
+    <canvas id="cPrenhez" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">% Vacas não prenhes após 150 DEL</div>
+    <div class="lg">
+      <div class="ld"><span class="ldot" style="background:#F57F17"></span>% não prenhes</div>
+      <div class="ld"><span style="display:inline-block;width:14px;border-top:2px dashed #FFD54F"></span>&nbsp;Meta ≤15%</div>
+    </div>
+    <canvas id="cDEL" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">Consumo de insumos (ton/mês)</div>
+    <div class="isel" id="ibtns">
+      <button class="ibtn on" data-i="0">Silagem</button>
+      <button class="ibtn" data-i="1">Caroço Algodão</button>
+      <button class="ibtn" data-i="2">Polpa</button>
+      <button class="ibtn" data-i="3">Farelo Soja</button>
+      <button class="ibtn" data-i="4">Fubá</button>
+    </div>
+    <canvas id="cIns" height="200"></canvas>
+  </div>
+
+  <div class="cc">
+    <div class="ct">RSCA — Retorno Sobre Custo Alimentar (L/R$)</div>
+    <div class="lg">
+      <div class="ld"><span class="lline" style="background:#2D6A4F"></span>RSCA real</div>
+      <div class="ld"><span style="display:inline-block;width:14px;border-top:2px dashed #52B788"></span>&nbsp;Meta (0,87)</div>
+    </div>
+    <canvas id="cRSCA" height="200"></canvas>
+  </div>
+
 </main>
 
-<footer class="foot">Dashboard Pecuária Leiteira · Abr/2025 – Mar/2026 · Gerado automaticamente</footer>
+<footer class="foot">Dashboard Pecuária Leiteira · Abr/2025 – Mar/2026</footer>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────────
-const M  = ['Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26'];
+const M  = ['Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez','Jan','Fev','Mar'];
+const ML = ['Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26'];
 const N  = M.length;
+
 const prodMes   = [1455192,1499610,1522535,1540268,1536303,1576331,1570557,1575735,1633042,1620906,1648167,1707873];
 const mediaVaca = [37.9,39.6,39.8,40.2,40.5,41.3,40.3,41.8,40.8,40.1,40.4,40.7];
 const metaProd  = [39,39,39,39,39,39,39,39,39,42,42,42];
@@ -221,244 +222,293 @@ const INSUMOS   = [
   {label:'Caroço Algodão (ton)',data:[210,200,205,215,220,208,202,198,207,218,214,207],    fill:'rgba(106,27,154,0.55)', stroke:'#6A1B9A'},
   {label:'Polpa (ton)',          data:[85,80,82,87,90,83,80,78,84,89,87,84],               fill:'rgba(45,106,79,0.55)',  stroke:'#2D6A4F'},
   {label:'Farelo de Soja (ton)',data:[140,135,138,143,147,138,135,132,139,146,143,139],    fill:'rgba(230,81,0,0.55)',   stroke:'#E65100'},
-  {label:'Fubá (ton)',           data:[95,91,93,97,100,94,91,89,94,99,97,94],              fill:'rgba(245,127,23,0.55)','stroke':'#F57F17'},
+  {label:'Fubá (ton)',           data:[95,91,93,97,100,94,91,89,94,99,97,94],              fill:'rgba(245,127,23,0.55)',  stroke:'#F57F17'},
 ];
 
-// ── MINI CHART ENGINE ─────────────────────────────────────────────────────────
-function dpr(){return window.devicePixelRatio||1}
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const tipEl = document.getElementById('tip');
+const FONT  = "'Poppins',system-ui,sans-serif";
+const DPR   = Math.min(window.devicePixelRatio||1, 2);
 
-function setupCanvas(id){
-  const el=document.getElementById(id);
-  const W=el.parentElement.clientWidth;
-  const H=el.getAttribute('height')*1;
-  const r=dpr();
-  el.width=W*r; el.height=H*r;
-  el.style.width=W+'px'; el.style.height=H+'px';
-  const ctx=el.getContext('2d');
-  ctx.scale(r,r);
-  return {ctx,W,H};
+// Padding: enough room for labels
+const P = {t:10, r:10, b:28, l:10};
+// Left axis width (text drawn separately)
+const AX_L = 44;
+const AX_R = 46; // for dual axis chart
+
+function setupCanvas(id, heightPx){
+  const el = document.getElementById(id);
+  const W  = el.parentElement.clientWidth;
+  const H  = heightPx || el.getAttribute('height')*1 || 200;
+  el.width  = W * DPR;
+  el.height = H * DPR;
+  el.style.width  = W + 'px';
+  el.style.height = H + 'px';
+  const ctx = el.getContext('2d');
+  ctx.scale(DPR, DPR);
+  return {ctx, W, H, el};
 }
 
-const PAD={t:14,r:54,b:36,l:58};
-const GRID='rgba(0,0,0,0.06)';
-const FONT="'Poppins',system-ui,sans-serif";
-
-function range(arr){const mn=Math.min(...arr),mx=Math.max(...arr);return{mn,mx}}
-
-function niceRange(mn,mx,ticks=5){
-  const span=mx-mn||1;
-  const step=Math.pow(10,Math.floor(Math.log10(span/ticks)));
-  const nStep=[1,2,2.5,5,10].map(f=>f*step).find(s=>span/s<=ticks+1)||step;
-  const lo=Math.floor(mn/nStep)*nStep;
-  const hi=Math.ceil(mx/nStep)*nStep;
-  const steps=[];
-  for(let v=lo;v<=hi+nStep*0.001;v+=nStep) steps.push(+v.toPrecision(6));
-  return steps;
+function niceSteps(mn, mx, n){
+  if(mx === mn) mx = mn + 1;
+  const span = mx - mn;
+  const raw  = span / n;
+  const mag  = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1,2,2.5,5,10].map(f=>f*mag).find(s=>span/s<=n+1) || mag;
+  const lo   = Math.floor(mn/step)*step;
+  const hi   = Math.ceil(mx/step)*step;
+  const out  = [];
+  for(let v=lo; v<=hi+step*0.001; v+=step) out.push(+v.toPrecision(8));
+  return out;
 }
 
-function xPos(i,W){return PAD.l+i*(W-PAD.l-PAD.r)/(N-1)}
-function yPos(v,mn,mx,H){return PAD.t+(1-(v-mn)/(mx-mn))*(H-PAD.t-PAD.b)}
+function xPos(i, plotL, plotW){ return plotL + (i+0.5)*(plotW/N); }
+function yPos(v, mn, mx, plotT, plotH){ return plotT + (1-(v-mn)/(mx-mn))*plotH; }
 
-function drawGrid(ctx,W,H,steps,mn,mx,fmt){
-  ctx.textBaseline='middle';
-  ctx.font=`10px ${FONT}`;
-  ctx.fillStyle='#888';
-  ctx.strokeStyle=GRID;
-  ctx.lineWidth=1;
-  steps.forEach(v=>{
-    const y=yPos(v,mn,mx,H);
-    ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(W-PAD.r,y);ctx.stroke();
-    ctx.fillText(fmt(v),W-PAD.r+4,y);
+function drawAxesGrid(ctx, W, H, steps, mn, mx, fmtL, fmtR){
+  const plotL = P.l + AX_L;
+  const plotW = W - plotL - P.r - (fmtR ? AX_R : 0);
+  const plotT = P.t;
+  const plotH = H - P.t - P.b;
+
+  ctx.save();
+  ctx.font = `10px ${FONT}`;
+  ctx.fillStyle = '#888';
+  ctx.strokeStyle = 'rgba(0,0,0,0.07)';
+  ctx.lineWidth = 1;
+
+  steps.forEach(v => {
+    const y = yPos(v, mn, mx, plotT, plotH);
+    // grid line
+    ctx.beginPath(); ctx.moveTo(plotL, y); ctx.lineTo(plotL+plotW, y); ctx.stroke();
+    // left label
+    if(fmtL){
+      ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      ctx.fillText(fmtL(v), plotL - 4, y);
+    }
+    // right label
+    if(fmtR){
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(fmtR(v), plotL + plotW + 4, y);
+    }
   });
+  ctx.restore();
+  return {plotL, plotW, plotT, plotH};
 }
 
-function drawXLabels(ctx,W,H){
-  ctx.textAlign='center';ctx.textBaseline='top';
-  ctx.font=`10px ${FONT}`;ctx.fillStyle='#888';
-  M.forEach((m,i)=>ctx.fillText(m,xPos(i,W),H-PAD.b+5));
+function drawXLabels(ctx, W, H, plotL, plotW){
+  ctx.save();
+  ctx.font = `10px ${FONT}`;
+  ctx.fillStyle = '#888';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  M.forEach((m, i) => {
+    ctx.fillText(m, xPos(i, plotL, plotW), H - P.b + 4);
+  });
+  ctx.restore();
 }
 
-function drawLine(ctx,data,mn,mx,W,H,color,dash=[],lw=2,fill=null){
-  const pts=data.map((v,i)=>({x:xPos(i,W),y:yPos(v,mn,mx,H)}));
-  if(fill){
+function drawLine(ctx, data, mn, mx, plotL, plotW, plotT, plotH, color, dash, lw, fillColor){
+  const pts = data.map((v,i)=>({x:xPos(i,plotL,plotW), y:yPos(v,mn,mx,plotT,plotH)}));
+  ctx.save();
+  if(fillColor){
     ctx.beginPath();
-    ctx.moveTo(pts[0].x,H-PAD.b);
-    pts.forEach(p=>ctx.lineTo(p.x,p.y));
-    ctx.lineTo(pts[pts.length-1].x,H-PAD.b);
-    ctx.closePath();ctx.fillStyle=fill;ctx.fill();
+    ctx.moveTo(pts[0].x, plotT+plotH);
+    pts.forEach(p=>ctx.lineTo(p.x, p.y));
+    ctx.lineTo(pts[N-1].x, plotT+plotH);
+    ctx.closePath(); ctx.fillStyle=fillColor; ctx.fill();
   }
-  ctx.beginPath();ctx.setLineDash(dash);ctx.lineWidth=lw;ctx.strokeStyle=color;
+  ctx.beginPath();
+  ctx.setLineDash(dash||[]);
+  ctx.lineWidth = lw||2;
+  ctx.strokeStyle = color;
+  ctx.lineJoin = 'round'; ctx.lineCap = 'round';
   pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
-  ctx.stroke();ctx.setLineDash([]);
-  if(!dash.length){
+  ctx.stroke();
+  if(!dash||!dash.length){
     pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill()});
   }
+  ctx.restore();
 }
 
-function drawBars(ctx,data,mn,mx,W,H,fillFn){
-  const bw=Math.max(6,(W-PAD.l-PAD.r)/N*0.55);
+function drawBars(ctx, data, mn, mx, plotL, plotW, plotT, plotH, fillFn){
+  const bw = Math.max(8, plotW/N*0.55);
   data.forEach((v,i)=>{
-    const x=xPos(i,W),y=yPos(v,mn,mx,H),bh=yPos(mn,mn,mx,H)-y;
+    const x  = xPos(i,plotL,plotW);
+    const y  = yPos(v,mn,mx,plotT,plotH);
+    const bh = (plotT+plotH) - y;
+    const r  = Math.min(4, bw/2);
     ctx.beginPath();
-    const r=3;
-    ctx.moveTo(x-bw/2+r,y);ctx.lineTo(x+bw/2-r,y);
-    ctx.quadraticCurveTo(x+bw/2,y,x+bw/2,y+r);
-    ctx.lineTo(x+bw/2,y+bh);ctx.lineTo(x-bw/2,y+bh);
-    ctx.lineTo(x-bw/2,y+r);
-    ctx.quadraticCurveTo(x-bw/2,y,x-bw/2+r,y);
+    ctx.moveTo(x-bw/2+r, y);
+    ctx.lineTo(x+bw/2-r, y);
+    ctx.quadraticCurveTo(x+bw/2, y, x+bw/2, y+r);
+    ctx.lineTo(x+bw/2, y+bh);
+    ctx.lineTo(x-bw/2, y+bh);
+    ctx.lineTo(x-bw/2, y+r);
+    ctx.quadraticCurveTo(x-bw/2, y, x-bw/2+r, y);
     ctx.closePath();
-    ctx.fillStyle=typeof fillFn==='function'?fillFn(v,i):fillFn;
+    ctx.fillStyle = typeof fillFn==='function'?fillFn(v,i):fillFn;
     ctx.fill();
   });
 }
 
-// tooltip state
-const tips=[];
-function addTooltip(canvasId,getInfo){
-  const el=document.getElementById(canvasId);
-  let tip=null;
-  function show(e){
-    const rect=el.getBoundingClientRect();
-    const cx=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-    const W=rect.width;
-    const idx=Math.round((cx-PAD.l)/(W-PAD.l-PAD.r)*(N-1));
-    if(idx<0||idx>=N){hide();return}
-    const info=getInfo(idx);
-    if(!tip){tip=document.createElement('div');tip.style.cssText='position:fixed;background:#1A1A1A;color:#fff;font-size:11px;font-family:Poppins,sans-serif;padding:8px 12px;border-radius:8px;pointer-events:none;z-index:9999;line-height:1.6;max-width:180px';document.body.appendChild(tip)}
-    tip.innerHTML='<b>'+M[idx]+'</b><br>'+info;
-    const tx=Math.min(e.clientX+12,window.innerWidth-200);
-    const ty=Math.max(e.clientY-60,8);
-    tip.style.left=tx+'px';tip.style.top=ty+'px';tip.style.display='block';
+// Tooltip
+function addTooltip(el, plotL, plotW, getHtml){
+  function show(cx, cy){
+    const idx = Math.round((cx - plotL - (plotW/N)*0.5) / (plotW/N));
+    if(idx<0||idx>=N){tipEl.style.display='none';return}
+    tipEl.innerHTML = '<b style="font-size:11px">'+ML[idx]+'</b><br>'+getHtml(idx);
+    tipEl.style.display='block';
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const tw = 190, th = 80;
+    const left = Math.min(cx+16, vw-tw-8);
+    const top  = Math.max(cy-th-8, 8);
+    tipEl.style.left = left+'px';
+    tipEl.style.top  = top+'px';
   }
-  function hide(){if(tip)tip.style.display='none'}
-  el.addEventListener('mousemove',show);el.addEventListener('touchmove',e=>{e.preventDefault();show(e)},{passive:false});
-  el.addEventListener('mouseleave',hide);el.addEventListener('touchend',hide);
+  function hide(){ tipEl.style.display='none'; }
+  el.addEventListener('mousemove', e=>{
+    const r=el.getBoundingClientRect();
+    show(e.clientX-r.left, e.clientY);
+  });
+  el.addEventListener('touchstart', e=>{
+    e.preventDefault();
+    const r=el.getBoundingClientRect();
+    const t=e.touches[0];
+    show(t.clientX-r.left, t.clientY);
+  },{passive:false});
+  el.addEventListener('touchmove', e=>{
+    e.preventDefault();
+    const r=el.getBoundingClientRect();
+    const t=e.touches[0];
+    show(t.clientX-r.left, t.clientY);
+  },{passive:false});
+  el.addEventListener('mouseleave', hide);
+  el.addEventListener('touchend', e=>{setTimeout(hide,1200)});
 }
 
-// ── CHART 1: Produção (dual axis) ─────────────────────────────────────────────
+// ── CHART 1: Produção dual-axis ───────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cProd');
-  const volSteps=niceRange(Math.min(...prodMes)*0.97,Math.max(...prodMes)*1.02,5);
-  const volMn=volSteps[0],volMx=volSteps[volSteps.length-1];
-  const lSteps=niceRange(35,45,5);
-  const lMn=lSteps[0],lMx=lSteps[lSteps.length-1];
+  const H = 220;
+  const {ctx,W,el} = setupCanvas('cProd', H);
 
-  // grid from vol axis
-  ctx.textBaseline='middle';ctx.font=`10px ${FONT}`;ctx.fillStyle='#888';
-  ctx.strokeStyle=GRID;ctx.lineWidth=1;
+  // vol axis (left)
+  const volMn = 1400000, volMx = 1750000;
+  const volSteps = niceSteps(volMn, volMx, 4);
+  const volMnN = volSteps[0], volMxN = volSteps[volSteps.length-1];
+
+  // L/vaca axis (right)
+  const lMn = 36, lMx = 44;
+  const lSteps = niceSteps(lMn, lMx, 4);
+  const lMnN = lSteps[0], lMxN = lSteps[lSteps.length-1];
+
+  const plotL = P.l + AX_L;
+  const plotW = W - plotL - P.r - AX_R;
+  const plotT = P.t;
+  const plotH = H - P.t - P.b;
+
+  // grid from vol
+  ctx.font=`10px ${FONT}`; ctx.textBaseline='middle'; ctx.strokeStyle='rgba(0,0,0,0.07)'; ctx.lineWidth=1;
   volSteps.forEach(v=>{
-    const y=yPos(v,volMn,volMx,H);
-    ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(W-PAD.r,y);ctx.stroke();
-    const lbl=(v/1e6).toFixed(2)+'M';
-    ctx.textAlign='right';ctx.fillText(lbl,PAD.l-4,y);
+    const y=yPos(v,volMnN,volMxN,plotT,plotH);
+    ctx.beginPath();ctx.moveTo(plotL,y);ctx.lineTo(plotL+plotW,y);ctx.stroke();
+    ctx.fillStyle='#1565C0'; ctx.textAlign='right';
+    ctx.fillText((v/1e6).toFixed(2)+'M', plotL-4, y);
   });
-  // right axis labels (L/vaca)
+  // right labels
   lSteps.forEach(v=>{
-    const y=yPos(v,lMn,lMx,H);
-    ctx.textAlign='left';ctx.fillText(v.toFixed(0)+'L',W-PAD.r+4,y);
+    const y=yPos(v,lMnN,lMxN,plotT,plotH);
+    ctx.fillStyle='#E65100'; ctx.textAlign='left';
+    ctx.fillText(v.toFixed(0)+'L', plotL+plotW+4, y);
   });
 
-  // bars for volume
-  const bw=Math.max(8,(W-PAD.l-PAD.r)/N*0.55);
-  prodMes.forEach((v,i)=>{
-    const x=xPos(i,W),y=yPos(v,volMn,volMx,H),bh=yPos(volMn,volMn,volMx,H)-y;
-    ctx.beginPath();const r=3;
-    ctx.moveTo(x-bw/2+r,y);ctx.lineTo(x+bw/2-r,y);
-    ctx.quadraticCurveTo(x+bw/2,y,x+bw/2,y+r);
-    ctx.lineTo(x+bw/2,y+bh);ctx.lineTo(x-bw/2,y+bh);
-    ctx.lineTo(x-bw/2,y+r);ctx.quadraticCurveTo(x-bw/2,y,x-bw/2+r,y);
-    ctx.closePath();ctx.fillStyle='rgba(21,101,192,0.5)';ctx.fill();
-  });
-
+  // bars
+  drawBars(ctx,prodMes,volMnN,volMxN,plotL,plotW,plotT,plotH,'rgba(21,101,192,0.48)');
   // meta line
-  drawLine(ctx,metaProd,lMn,lMx,W,H,'#FFB74D',[7,4],1.5);
-  // media vaca line
-  drawLine(ctx,mediaVaca,lMn,lMx,W,H,'#E65100',[],2.5,'rgba(230,81,0,0.06)');
+  drawLine(ctx,metaProd,lMnN,lMxN,plotL,plotW,plotT,plotH,'#FFB74D',[6,4],1.5);
+  // media line
+  drawLine(ctx,mediaVaca,lMnN,lMxN,plotL,plotW,plotT,plotH,'#E65100',[],2.5,'rgba(230,81,0,0.06)');
 
-  drawXLabels(ctx,W,H);
-  addTooltip('cProd',i=>`Volume: <b>${prodMes[i].toLocaleString('pt-BR')} L</b><br>Média: <b>${mediaVaca[i].toFixed(1)} L/vaca</b><br>Meta: <b>${metaProd[i]} L</b>`);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el, plotL, plotW, i=>
+    `Vol: <b>${(prodMes[i]/1e6).toFixed(3)}M L</b><br>Média: <b>${mediaVaca[i].toFixed(1)} L/vaca</b><br>Meta: <b>${metaProd[i]} L</b>`
+  );
 })();
 
 // ── CHART 2: CCS ─────────────────────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cCCS');
-  const steps=niceRange(70,130,5);
+  const {ctx,W,H,el}=setupCanvas('cCCS',200);
+  const steps=niceSteps(70,130,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0));
-  drawBars(ctx,ccs,mn,mx,W,H,v=>v>100?'rgba(171,71,188,0.8)':'rgba(123,31,162,0.72)');
-  drawLine(ctx,Array(N).fill(100),mn,mx,W,H,'#CE93D8',[5,4],1.5);
-  drawXLabels(ctx,W,H);
-  addTooltip('cCCS',i=>`CCS: <b>${ccs[i].toFixed(1)} mil</b><br>Meta: <b>100 mil</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0),'');
+  drawBars(ctx,ccs,mn,mx,plotL,plotW,plotT,plotH,v=>v>100?'rgba(171,71,188,0.78)':'rgba(123,31,162,0.68)');
+  drawLine(ctx,Array(N).fill(100),mn,mx,plotL,plotW,plotT,plotH,'#CE93D8',[5,4],1.5);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`CCS: <b>${ccs[i].toFixed(1)} mil</b><br>Meta: <b>≤100 mil</b>`);
 })();
 
-// ── CHART 3: Mastite ──────────────────────────────────────────────────────────
+// ── CHART 3: Mastite ─────────────────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cMast');
-  const steps=niceRange(3,12,5);
+  const {ctx,W,H,el}=setupCanvas('cMast',200);
+  const all=[...mast,...metaMast];
+  const steps=niceSteps(2,Math.max(...all)+1,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%');
-  drawLine(ctx,mast,mn,mx,W,H,'#C62828',[],2,'rgba(198,40,40,0.08)');
-  drawLine(ctx,metaMast,mn,mx,W,H,'#EF9A9A',[5,4],1.5);
-  drawXLabels(ctx,W,H);
-  addTooltip('cMast',i=>`Mastite: <b>${mast[i].toFixed(1)}%</b><br>Meta: <b>${metaMast[i]}%</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%','');
+  drawLine(ctx,mast,mn,mx,plotL,plotW,plotT,plotH,'#C62828',[],2,'rgba(198,40,40,0.08)');
+  drawLine(ctx,metaMast,mn,mx,plotL,plotW,plotT,plotH,'#EF9A9A',[5,4],1.5);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`Mastite: <b>${mast[i].toFixed(1)}%</b><br>Meta: <b>${metaMast[i]}%</b>`);
 })();
 
 // ── CHART 4: Descarte + Mortalidade ──────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cDesc');
-  const all=[...descarte,...mortal];
-  const steps=niceRange(0,Math.max(...all)*1.1,5);
+  const {ctx,W,H,el}=setupCanvas('cDesc',200);
+  const steps=niceSteps(0,Math.max(...descarte)*1.15,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(1)+'%');
-  drawLine(ctx,descarte,mn,mx,W,H,'#E65100',[],2.5);
-  drawLine(ctx,mortal,mn,mx,W,H,'#6A1B9A',[4,2],2);
-  drawXLabels(ctx,W,H);
-  addTooltip('cDesc',i=>`Descarte: <b>${descarte[i].toFixed(2)}%</b><br>Mortalidade: <b>${mortal[i].toFixed(2)}%</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(1)+'%','');
+  drawLine(ctx,descarte,mn,mx,plotL,plotW,plotT,plotH,'#E65100',[],2.5);
+  drawLine(ctx,mortal,mn,mx,plotL,plotW,plotT,plotH,'#6A1B9A',[4,2],2);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`Descarte: <b>${descarte[i].toFixed(2)}%</b><br>Mortalidade: <b>${mortal[i].toFixed(2)}%</b>`);
 })();
 
 // ── CHART 5: Prenhez ─────────────────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cPrenhez');
-  const steps=niceRange(15,70,5);
+  const {ctx,W,H,el}=setupCanvas('cPrenhez',200);
+  const steps=niceSteps(15,70,5);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%');
-  drawLine(ctx,Array(N).fill(27),mn,mx,W,H,'rgba(45,106,79,0.35)',[4,3],1.2);
-  drawLine(ctx,Array(N).fill(60),mn,mx,W,H,'rgba(21,101,192,0.35)',[4,3],1.2);
-  drawLine(ctx,prenV,mn,mx,W,H,'#2D6A4F',[],2.5,'rgba(45,106,79,0.07)');
-  drawLine(ctx,prenN,mn,mx,W,H,'#1565C0',[],2.5,'rgba(21,101,192,0.07)');
-  drawXLabels(ctx,W,H);
-  addTooltip('cPrenhez',i=>`Prenhez Vacas: <b>${prenV[i]}%</b> (meta 27%)<br>Prenhez Novilhas: <b>${prenN[i]}%</b> (meta 60%)`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%','');
+  drawLine(ctx,Array(N).fill(27),mn,mx,plotL,plotW,plotT,plotH,'rgba(45,106,79,0.35)',[4,3],1.2);
+  drawLine(ctx,Array(N).fill(60),mn,mx,plotL,plotW,plotT,plotH,'rgba(21,101,192,0.35)',[4,3],1.2);
+  drawLine(ctx,prenV,mn,mx,plotL,plotW,plotT,plotH,'#2D6A4F',[],2.5,'rgba(45,106,79,0.07)');
+  drawLine(ctx,prenN,mn,mx,plotL,plotW,plotT,plotH,'#1565C0',[],2.5,'rgba(21,101,192,0.07)');
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`Vacas: <b>${prenV[i]}%</b> (meta 27%)<br>Novilhas: <b>${prenN[i]}%</b> (meta 60%)`);
 })();
 
 // ── CHART 6: DEL >150 ────────────────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cDEL');
-  const steps=niceRange(8,20,5);
+  const {ctx,W,H,el}=setupCanvas('cDEL',200);
+  const steps=niceSteps(8,20,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%');
-  drawBars(ctx,del150,mn,mx,W,H,v=>v>15?'rgba(191,54,12,0.78)':'rgba(245,127,23,0.72)');
-  drawLine(ctx,Array(N).fill(15),mn,mx,W,H,'#FFD54F',[5,3],1.5);
-  drawXLabels(ctx,W,H);
-  addTooltip('cDEL',i=>`Não prenhes >150 DEL: <b>${del150[i]}%</b><br>Meta: <b>≤15%</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0)+'%','');
+  drawBars(ctx,del150,mn,mx,plotL,plotW,plotT,plotH,v=>v>15?'rgba(191,54,12,0.78)':'rgba(245,127,23,0.72)');
+  drawLine(ctx,Array(N).fill(15),mn,mx,plotL,plotW,plotT,plotH,'#FFD54F',[5,3],1.5);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`Não prenhes >150 DEL: <b>${del150[i]}%</b><br>Meta: <b>≤15%</b>`);
 })();
 
 // ── CHART 7: Insumos ─────────────────────────────────────────────────────────
 let insIdx=0;
 function drawInsumo(){
   const ins=INSUMOS[insIdx];
-  const {ctx,W,H}=setupCanvas('cIns');
-  const steps=niceRange(0,Math.max(...ins.data)*1.12,5);
+  const {ctx,W,H,el}=setupCanvas('cIns',200);
+  const steps=niceSteps(0,Math.max(...ins.data)*1.15,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0));
-  drawBars(ctx,ins.data,mn,mx,W,H,ins.fill);
-  drawXLabels(ctx,W,H);
-  addTooltip('cIns',i=>`${ins.label}: <b>${ins.data[i].toLocaleString('pt-BR')} ton</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0),'');
+  drawBars(ctx,ins.data,mn,mx,plotL,plotW,plotT,plotH,ins.fill);
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`${ins.label}:<br><b>${ins.data[i].toLocaleString('pt-BR')} ton</b>`);
 }
 drawInsumo();
 document.getElementById('ibtns').addEventListener('click',e=>{
@@ -471,23 +521,15 @@ document.getElementById('ibtns').addEventListener('click',e=>{
 
 // ── CHART 8: RSCA ────────────────────────────────────────────────────────────
 (function(){
-  const {ctx,W,H}=setupCanvas('cRSCA');
-  const steps=niceRange(0.8,1.9,5);
+  const {ctx,W,H,el}=setupCanvas('cRSCA',200);
+  const steps=niceSteps(0.8,1.95,4);
   const mn=steps[0],mx=steps[steps.length-1];
-  ctx.textAlign='right';
-  drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(2));
-  drawLine(ctx,Array(N).fill(0.87),mn,mx,W,H,'#52B788',[6,4],1.5);
-  drawLine(ctx,rsca,mn,mx,W,H,'#2D6A4F',[],2.5,'rgba(45,106,79,0.08)');
-  drawXLabels(ctx,W,H);
-  addTooltip('cRSCA',i=>`RSCA: <b>${rsca[i].toFixed(3)}</b><br>Meta: <b>≥0,87</b>`);
+  const {plotL,plotW,plotT,plotH}=drawAxesGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(2),'');
+  drawLine(ctx,Array(N).fill(0.87),mn,mx,plotL,plotW,plotT,plotH,'#52B788',[6,4],1.5);
+  drawLine(ctx,rsca,mn,mx,plotL,plotW,plotT,plotH,'#2D6A4F',[],2.5,'rgba(45,106,79,0.08)');
+  drawXLabels(ctx,W,H,plotL,plotW);
+  addTooltip(el,plotL,plotW,i=>`RSCA: <b>${rsca[i].toFixed(3)} L/R$</b><br>Meta: <b>≥0,87</b>`);
 })();
-
-// Redraw on resize
-let rto;
-window.addEventListener('resize',()=>{
-  clearTimeout(rto);
-  rto=setTimeout(()=>location.reload(),300);
-});
 </script>
 </body>
 </html>
