@@ -119,7 +119,18 @@ canvas{display:block;width:100%!important;touch-action:pan-y}
     <canvas id="cProd" height="220"></canvas>
   </div>
 
-  <!-- 3. CCS -->
+  <!-- 3. Produção acumulada 305 dias -->
+  <div class="cc">
+    <div class="ct">Produção acumulada aos 305 dias — lactações encerradas (litros)</div>
+    <div class="lg">
+      <div class="ld"><span class="lline" style="background:#1565C0"></span>1ª Lactação</div>
+      <div class="ld"><span class="lline" style="background:#2D6A4F"></span>2ª Lactação</div>
+      <div class="ld"><span class="lline" style="background:#E65100"></span>≥3ª Lactação</div>
+    </div>
+    <canvas id="cLact" height="210"></canvas>
+  </div>
+
+  <!-- 4. CCS -->
   <div class="cc">
     <div class="ct">CCS (mil cél/mL) vs Meta (100)</div>
     <div class="lg">
@@ -129,7 +140,7 @@ canvas{display:block;width:100%!important;touch-action:pan-y}
     <canvas id="cCCS" height="200"></canvas>
   </div>
 
-  <!-- 4. Mastite -->
+  <!-- 5. Mastite -->
   <div class="cc">
     <div class="ct">Taxa de Mastite (%) vs Meta</div>
     <div class="lg">
@@ -373,7 +384,44 @@ function addTip(el,pL,pW,fn){
   addTip(el,pL,pW,i=>`Vol: <b>${(prodMes[i]/1e6).toFixed(3)}M L</b><br>Média: <b>${mediaVaca[i].toFixed(1)} L/vaca</b><br>Meta: <b>${metaProd[i]} L</b>`);
 })();
 
-// ── GRÁFICO 3: CCS ────────────────────────────────────────────────────────────
+// ── GRÁFICO 3: Produção acumulada 305 dias ────────────────────────────────────
+(function(){
+  // Dados de produção acumulada aos 305 dias por ordem de lactação
+  const lact1 = [11212,10468,11273,10757,10936,11276,11082,11420,11515,11243,10912,11681]; // 1ª lactação (litros)
+  const lact2 = [12961,13025,12945,12882,13373,12854,12283,13323,12775,13873,13321,13544]; // 2ª lactação (litros)
+  const lact3 = [12612,12041,12180,11974,13335,13087,12505,13743,12876,13874,14048,12693]; // ≥3ª lactação (litros)
+
+  const temDados = lact1.some(v=>v>0)||lact2.some(v=>v>0)||lact3.some(v=>v>0);
+  const {ctx,W,H,el}=setupCanvas('cLact',210);
+
+  if(!temDados){
+    // Placeholder quando não há dados
+    ctx.save();
+    ctx.fillStyle='#EDE8F5';
+    ctx.fillRect(0,0,W,H);
+    ctx.font=`bold 13px ${FONT}`;
+    ctx.fillStyle='#9A9A9A';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('Preencha a aba Lactacao_Encerrada na planilha',W/2,H/2-14);
+    ctx.font=`11px ${FONT}`;
+    ctx.fillText('para visualizar este gráfico',W/2,H/2+10);
+    ctx.restore();
+    return;
+  }
+
+  const all=[...lact1,...lact2,...lact3].filter(v=>v>0);
+  const steps=niceSteps(Math.min(...all)*0.95,Math.max(...all)*1.05,4);
+  const mn=steps[0],mx=steps[steps.length-1];
+  const {pL,pW,pT,pH}=drawGrid(ctx,W,H,steps,mn,mx,v=>(v/1000).toFixed(0)+'k');
+  drawLine(ctx,lact1,mn,mx,pL,pW,pT,pH,'#1565C0',[],2.5,'rgba(21,101,192,0.07)');
+  drawLine(ctx,lact2,mn,mx,pL,pW,pT,pH,'#2D6A4F',[],2.5,'rgba(45,106,79,0.07)');
+  drawLine(ctx,lact3,mn,mx,pL,pW,pT,pH,'#E65100',[],2.5,'rgba(230,81,0,0.07)');
+  drawXLabels(ctx,W,H,pL,pW);
+  addTip(el,pL,pW,i=>`1ª Lact.: <b>${lact1[i].toLocaleString('pt-BR')} L</b><br>2ª Lact.: <b>${lact2[i].toLocaleString('pt-BR')} L</b><br>≥3ª Lact.: <b>${lact3[i].toLocaleString('pt-BR')} L</b>`);
+})();
+
+// ── GRÁFICO 4: CCS ────────────────────────────────────────────────────────────
 (function(){
   const {ctx,W,H,el}=setupCanvas('cCCS',200);
   const steps=niceSteps(70,130,4);
