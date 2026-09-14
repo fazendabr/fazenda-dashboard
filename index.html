@@ -233,7 +233,7 @@ canvas{display:block;width:100%!important;touch-action:pan-y}
   </div>
 
 </main>
-<footer class="foot">Dashboard Pecuária Leiteira · Abr/2025 – Mar/2026</footer>
+<footer class="foot">Dashboard Pecuária Leiteira</footer>
 
 <script>
 // ── DADOS REAIS ───────────────────────────────────────────────────────────────
@@ -498,7 +498,7 @@ function addTip(el,pL,pW,fn){
   const steps=niceSteps(70,130,4);
   const mn=steps[0],mx=steps[steps.length-1];
   const {pL,pW,pT,pH}=drawGrid(ctx,W,H,steps,mn,mx,v=>v.toFixed(0));
-  drawBars(ctx,ccs,mn,mx,pL,pW,pT,pH,v=>v>100?'rgba(171,71,188,0.78)':'rgba(123,31,162,0.68)');
+  drawBars(ctx,ccs,mn,mx,pL,pW,pT,pH,v=>v>100?'rgba(123,31,162,0.85)':'rgba(123,31,162,0.45)');
   drawLine(ctx,Array(N).fill(100),mn,mx,pL,pW,pT,pH,'#CE93D8',[5,4],1.5);
   drawXLabels(ctx,W,H,pL,pW);
   addTip(el,pL,pW,i=>`CCS: <b>${ccs[i].toFixed(1)} mil</b><br>Meta: <b>≤100 mil</b>`);
